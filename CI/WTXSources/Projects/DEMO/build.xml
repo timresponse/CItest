@@ -6,10 +6,7 @@
 	<property name="WTXFOLDER" value="c:/IBM/WebSphere Transformation Extender 8.2/" />
 	<dirname property="sourcefolder" file="Source" />
 
-	<target name="clean">
-		<echo message="${sourcefolder}" />
 
-	</target>
 
 	<target name="compile">
 		<basename property="filename" file="${theFile}" />
