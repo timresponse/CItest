@@ -1,0 +1,73 @@
+
+<project name="WTX" default="clean" basedir=".">
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+	<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" />
+	<svnSetting id="svn.settings" svnkit="false" javahl="false" username="tim" password="tim" />
+	<property name="WTXFOLDER" value="c:/IBM/WebSphere Transformation Extender 8.2/" />
+	<dirname property="sourcefolder" file="Source" />
+
+	<target name="clean">
+		<echo message="${sourcefolder}" />
+
+	</target>
+
+	<target name="compile">
+		<basename property="filename" file="${theFile}" />
+
+		<exec executable="${WTXFOLDER}\mcompile.exe">
+			<arg line='"${theFile}" -A -VERBOSE -LOG -P ${system}' />
+		</exec>
+
+
+	</target>
+	<target name="build">
+		<foreach target="compile" param="theFile">
+
+			<path>
+				<fileset dir="${sourcefolder}" casesensitive="yes">
+					<filename name="**/*.mms" />
+				</fileset>
+			</path>
+		</foreach>
+	</target>
+
+	<target name="movecompiled">
+		<move todir="Compiled">
+			<fileset dir="Source">
+				<include name="**/*.mvs" />
+				<include name="**/*.mmc" />
+				<include name="**/*.jcl" />
+				<include name="**/*.mme" />
+				<include name="**/*.znx" />
+				<include name="**/*.lnx" />
+				<include name="**/*.aix" />
+				<include name="**/*.sun" />
+				<include name="**/*.hpi" />
+				
+			</fileset>
+		</move>
+	</target>
+
+	<!-- SVN add -->
+	<target name="svn-add">
+		<svn refid="svn.settings">
+			<add force="true" dir="." recurse="true" />
+			<commit message="Commit after build">
+				<dirset dir="." />
+			</commit>
+
+		</svn>
+	</target>
+	<target name="svn-info">
+		<svn refid="svn.settings">
+			<info target="."/>
+		</svn>
+		<!-- show revision, author and date -->
+		<property 
+			name="version" 
+			value="At revision ${svn.info.lastRev} on ${svn.info.lastDate} by ${svn.info.author}" 
+		/>
+		<echo message="${version}"/>
+		<echo message="${system}"/>
+	</target>
+</project>

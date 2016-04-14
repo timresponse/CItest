@@ -1,0 +1,14 @@
+===================================================================================
+IBM Utility :	mcompile (Map compile utility)
+Version : 		8.2.0.5(8)
+Map Source File : 	C:\Program Files (x86)\Jenkins\workspace\DEMO\Source\DEMO.mms
+
+Executable Map :	ToBASE64
+StartTime :		donderdag 7 april 2016 10:50:01:15
+EndTime :       	donderdag 7 april 2016 10:50:01:19
+Compile Map File :	C:\Program Files (x86)\Jenkins\workspace\DEMO\Source\ToBASE64.mmc
+Map Result File :	C:\Program Files (x86)\Jenkins\workspace\DEMO\Source\ToBASE64.mme
+Map compiled successfully.
+
+===================================================================================
+

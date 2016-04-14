@@ -1,0 +1,28 @@
+<project name="WTX" default="clean" basedir=".">
+	<!-- Sets variables which can later be used. -->
+	<property name="BASEFOLDER" value="D:/eclipse_workspace/wtxcompile/" />
+	<property name="WTXFOLDER" value="C:/ibm/WebSphere Transformation Extender 8.4.1/" />
+	<property name="MAPlocation" value="" />
+	<basename property="MAPname" file="${MAPlocation}" suffix=".mms" />
+	<dirname property="MAPfolder" file="${MAPlocation}" />
+	<property name="MMS">${MAPname}.mms</property>
+	<property name="MMC">${MAPname}.mmc</property>
+	<property name="system" value="ZOS" />
+	<!-- Deletes the existing build, docs and dist directory-->
+
+	<target name="clean">
+		<echo message="${MAPname}" />
+		<echo message="${MAPfolder}}" />
+		<echo message="${MAPlocation}}" />
+	</target>
+
+	<target name="compile">
+		<exec executable="${WTXFOLDER}\mcompile.exe">
+			<arg line="${MAPfolder}\${MMS} -A -P ${system} " />
+		</exec>
+	</target>
+	<!-- Compiles the java code (including the usage of library for JUnit -->
+
+
+
+</project>
